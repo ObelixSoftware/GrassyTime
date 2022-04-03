@@ -5,6 +5,12 @@ Node.js 16.14.2 LTS with nvm install/use 16.14.2 on MacBook Pro (OSX Big Sir 11.
 
 react-native 0.68.0
 
+# Instructions
+
+Set ANDROID_SDK_ROOT
+
+Run 'yarn android'
+
 # References
 
 * https://reactnative.dev/docs/environment-setup
