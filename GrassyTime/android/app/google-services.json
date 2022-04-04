@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1016459272521",
+    "project_id": "grassytime-7f60d",
+    "storage_bucket": "grassytime-7f60d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016459272521:android:af2e7b855e5035f251fa98",
+        "android_client_info": {
+          "package_name": "com.grassytime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1016459272521-4iq66l91lfkvf27k3scm0nediht6sc9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbJZUM-IbAV3EslgW_wcCyaJWYJDhiZRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1016459272521-4iq66l91lfkvf27k3scm0nediht6sc9m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
