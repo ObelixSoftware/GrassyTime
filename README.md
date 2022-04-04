@@ -33,3 +33,8 @@ yarn web
 
 * Using react-dom 17.0.1 that is compatible with react 17.0.1 and react-native-web 0.17.7
 * Use terminate.sh if you ever want to terminate port 8081
+
+# react-native-elements on Web
+
+* https://reactnativeelements.com/docs/installation#using-on-web
+* https://blog.kiprosh.com/setup-react-native-web-app-with-typescript-and-webpack/
