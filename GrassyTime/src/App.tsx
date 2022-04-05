@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { Button } from '@rneui/themed';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 function App() {
   // Set an initializing state whilst Firebase connects
-  const [initializing, setInitializing] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
-
-  // Handle user state changes
-  function onAuthStateChanged(user) {
-    setUser(user);
-    if (initializing) setInitializing(false);
-  }
 
   function doLogin() {
     auth()
@@ -34,11 +29,16 @@ function App() {
   }
 
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
+    auth().onAuthStateChanged(userState => {
+      setUser(userState);
+
+      if (loading) {
+        setLoading(false);
+      }
+    });
   }, []);
 
-  if (initializing) return null;
+  if (loading) return null;
 
   if (!user) {
     return (
