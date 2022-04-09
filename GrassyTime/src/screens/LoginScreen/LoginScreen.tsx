@@ -1,18 +1,48 @@
 import React, { useState } from 'react'
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Button, Input } from '@rneui/themed';
 import styles from './styles';
+import auth from '@react-native-firebase/auth';
+import { validateEmail } from '../../utils/validationUtils';
 
-export default function LoginScreen({ navigation }) {
-    const [email, setEmail] = useState<string>('')
-    const [password, setPassword] = useState<string>('')
+export function LoginScreen({ navigation }) {
+
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<Record<string, string>>({});
+
+    const [emailAddress, setEmail] = useState<string>("lennie.work@gmail.com");
+    const [password, setPassword] = useState<string>('5/.Ewt~U=(Ty4S2<');
 
     const onFooterLinkPress = () => {
-        navigation.navigate('Registration')
+        navigation.navigate('Registration');
     }
 
     const onLoginPress = () => {
-      alert("Login");
+        setErrorMessage({})
+
+        if (!validateEmail(emailAddress.trim())) {
+            setErrorMessage({email: 'Please enter a valid email address'});
+            return;
+        }
+
+        if (!password) {
+            setErrorMessage({password: 'Please enter a valid password'});
+            return;
+        }
+
+        setIsLoading(true);
+
+        auth()
+            .signInWithEmailAndPassword(emailAddress, password)
+            .then(() => {
+                navigation.navigate('HomeScreen');
+            })
+            .catch(error => {
+                setErrorMessage({email: error.message});
+                setIsLoading(false);
+            }
+        );
     }
 
     return (
@@ -20,16 +50,18 @@ export default function LoginScreen({ navigation }) {
             <KeyboardAwareScrollView
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always">
-                <TextInput
+                <Input
                     style={styles.input}
                     placeholder='E-mail'
                     placeholderTextColor="#aaaaaa"
                     onChangeText={(text) => setEmail(text)}
-                    value={email}
+                    value={emailAddress}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
+                    errorStyle={styles.error}
+                    errorMessage={errorMessage.email}
                 />
-                <TextInput
+                <Input
                     style={styles.input}
                     placeholderTextColor="#aaaaaa"
                     secureTextEntry
@@ -38,12 +70,16 @@ export default function LoginScreen({ navigation }) {
                     value={password}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
+                    errorStyle={styles.error}
+                    errorMessage={errorMessage.password}
                 />
-                <TouchableOpacity
+                <Button
+                    title={"Login"}
+                    loading={isLoading}
+                    titleStyle={styles.buttonTitle}
                     style={styles.button}
                     onPress={() => onLoginPress()}>
-                    <Text style={styles.buttonTitle}>Log in</Text>
-                </TouchableOpacity>
+                </Button>
                 <View style={styles.footerView}>
                     <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
                 </View>

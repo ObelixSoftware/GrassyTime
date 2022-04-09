@@ -3,7 +3,7 @@ import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
 
-export default function RegistrationScreen({ navigation }) {
+export function RegistrationScreen({ navigation }) {
     const [fullName, setFullName] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')

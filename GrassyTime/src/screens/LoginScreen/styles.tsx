@@ -8,6 +8,9 @@ export default StyleSheet.create({
     title: {
 
     },
+    error: {
+        color: 'red'
+    },
     logo: {
         flex: 1,
         height: 120,
