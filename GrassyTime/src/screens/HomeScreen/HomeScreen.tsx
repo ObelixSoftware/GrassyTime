@@ -3,13 +3,20 @@ import { Text, View } from 'react-native'
 import auth from '@react-native-firebase/auth';
 import { Button } from '@rneui/themed';
 import styles from './styles';
+import { HomeProps } from '../../Navigation';
+import { NavigationContainerRefContext } from '@react-navigation/native';
 
-export function HomeScreen(props) {
+const HomeScreen = (props: HomeProps) => {
+
+    const { navigation } = props;
 
     const signOut = () => {
         auth()
             .signOut()
-            .then(() => console.log('User signed out!'));
+            .then(() => {
+                console.log('User signed out!');     
+                navigation.navigate("Login");           
+            });
     }
 
     return (
@@ -23,3 +30,5 @@ export function HomeScreen(props) {
         </View>
     )
 }
+
+export default HomeScreen;

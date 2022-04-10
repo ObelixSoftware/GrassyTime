@@ -1,22 +1,18 @@
 import React, { useState } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Button, Input } from '@rneui/themed';
 import styles from './styles';
 import auth from '@react-native-firebase/auth';
 import { validateEmail } from '../../utils/validationUtils';
 
-export function LoginScreen({ navigation }) {
+const LoginScreen = ({ navigation }) => {
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<Record<string, string>>({});
 
     const [emailAddress, setEmail] = useState<string>("lennie.work@gmail.com");
     const [password, setPassword] = useState<string>('5/.Ewt~U=(Ty4S2<');
-
-    const onFooterLinkPress = () => {
-        navigation.navigate('Registration');
-    }
 
     const onLoginPress = () => {
         setErrorMessage({})
@@ -36,7 +32,8 @@ export function LoginScreen({ navigation }) {
         auth()
             .signInWithEmailAndPassword(emailAddress, password)
             .then(() => {
-                navigation.navigate('HomeScreen');
+                setIsLoading(false);
+                navigation.navigate('Home');
             })
             .catch(error => {
                 setErrorMessage({email: error.message});
@@ -80,10 +77,9 @@ export function LoginScreen({ navigation }) {
                     style={styles.button}
                     onPress={() => onLoginPress()}>
                 </Button>
-                <View style={styles.footerView}>
-                    <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
-                </View>
             </KeyboardAwareScrollView>
         </View>
     )
 }
+
+export default LoginScreen;

@@ -2,10 +2,12 @@ import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { LoginScreen, HomeScreen, RegistrationScreen } from './screens'
+import LoginScreen from './screens/LoginScreen/LoginScreen';
+import HomeScreen from './screens/HomeScreen/HomeScreen';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { RootNavigation } from './Navigation';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootNavigation>();
 
 function App() {
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
@@ -20,14 +22,16 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         {user ? (
+          <>
           <Stack.Screen name="Home">
             {props => <HomeScreen {...props} user={user} />}
           </Stack.Screen>
+          <Stack.Screen name="Login" component={LoginScreen} />
+          </>
         ) : (
           <>
             <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Registration" component={RegistrationScreen} />
-            <Stack.Screen name="HomeScreen" component={HomeScreen} />
+             <Stack.Screen name="Home" component={HomeScreen} />
           </>
         )}
       </Stack.Navigator>

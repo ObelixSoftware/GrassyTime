@@ -19,10 +19,17 @@ yarn android
 yarn start
 ```
 
-If want to start up web then:
+If want to start up web then (CURRENTLY BROKEN):
 
 ```
 yarn web
+```
+
+# Login
+
+```
+Email address: lennie.work@gmail.com
+Password: 5/.Ewt~U=(Ty4S2<
 ```
 
 # References
