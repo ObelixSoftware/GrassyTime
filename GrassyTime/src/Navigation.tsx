@@ -5,4 +5,4 @@ export type RootNavigation = {
   Home: undefined;
 };
 
-export type HomeProps = NativeStackScreenProps<RootNavigation, 'Home'>;
+export type RootProps = NativeStackScreenProps<RootNavigation, 'Home'>;

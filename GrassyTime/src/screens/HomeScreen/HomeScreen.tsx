@@ -1,33 +1,18 @@
 import * as React from 'react'
-import { Text, View } from 'react-native'
-import auth from '@react-native-firebase/auth';
-import { Button } from '@rneui/themed';
-import styles from './styles';
-import { HomeProps } from '../../Navigation';
-import { NavigationContainerRefContext } from '@react-navigation/native';
+import { RootProps } from '../../Navigation';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import DetailsScreen from '../DetailsScreen/DetailsScreen';
+import SettingsScreen from '../SettingsScreen/SettingsScreen';
 
-const HomeScreen = (props: HomeProps) => {
+const Tab = createBottomTabNavigator();
 
-    const { navigation } = props;
-
-    const signOut = () => {
-        auth()
-            .signOut()
-            .then(() => {
-                console.log('User signed out!');     
-                navigation.navigate("Login");           
-            });
-    }
+const HomeScreen = (props: RootProps) => {
 
     return (
-        <View>
-            <Text>Home Screen</Text>
-            <Button
-                title={"Signout"}
-                titleStyle={styles.buttonTitle}
-                style={styles.button}
-                onPress={() => signOut()}></Button>
-        </View>
+        <Tab.Navigator screenOptions={{ headerShown: false }}>
+            <Tab.Screen name="Details" component={DetailsScreen} />
+            <Tab.Screen name="Settings" component={SettingsScreen} />
+        </Tab.Navigator>
     )
 }
 
