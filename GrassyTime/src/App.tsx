@@ -2,8 +2,8 @@ import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import LoginScreen from './screens/LoginScreen/LoginScreen';
-import HomeScreen from './screens/HomeScreen/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
+import HomeScreen from './screens/HomeScreen';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { RootNavigation } from './Navigation';
 

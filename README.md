@@ -35,6 +35,7 @@ Password: 5/.Ewt~U=(Ty4S2<
 # References
 
 * https://reactnative.dev/docs/environment-setup
+* https://reactnavigation.org/docs/typescript/
 
 # Notes
 

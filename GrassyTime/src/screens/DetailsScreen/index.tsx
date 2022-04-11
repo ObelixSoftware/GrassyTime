@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { Text, View } from 'react-native'
+import * as React from 'react';
+import { Text, View } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import { Button } from '@rneui/themed';
 import { RootProps } from '../../Navigation';

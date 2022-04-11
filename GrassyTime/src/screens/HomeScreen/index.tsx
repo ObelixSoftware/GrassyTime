@@ -1,12 +1,11 @@
-import * as React from 'react'
-import { RootProps } from '../../Navigation';
+import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import DetailsScreen from '../DetailsScreen/DetailsScreen';
-import SettingsScreen from '../SettingsScreen/SettingsScreen';
+import DetailsScreen from '../DetailsScreen';
+import SettingsScreen from '../SettingsScreen';
 
 const Tab = createBottomTabNavigator();
 
-const HomeScreen = (props: RootProps) => {
+const HomeScreen = () => {
 
     return (
         <Tab.Navigator screenOptions={{ headerShown: false }}>

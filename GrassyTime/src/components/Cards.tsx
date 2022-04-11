@@ -1,3 +1,5 @@
+// FOR DEMOSTRATION
+
 import React from 'react';
 import { View, ScrollView, StyleSheet, Image } from 'react-native';
 import { Text, Card, Button, Icon } from '@rneui/themed';

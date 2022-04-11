@@ -1,17 +1,18 @@
-import React, { useState } from 'react'
-import { View } from 'react-native'
+import React, { useState } from 'react';
+import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Button, Input } from '@rneui/themed';
 import styles from './styles';
 import auth from '@react-native-firebase/auth';
 import { validateEmail } from '../../utils/validationUtils';
+import { RootProps } from '../../Navigation';
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation }: RootProps) => {
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<Record<string, string>>({});
 
-    const [emailAddress, setEmail] = useState<string>("lennie.work@gmail.com");
+    const [emailAddress, setEmail] = useState<string>('lennie.work@gmail.com');
     const [password, setPassword] = useState<string>('5/.Ewt~U=(Ty4S2<');
 
     const onLoginPress = () => {
