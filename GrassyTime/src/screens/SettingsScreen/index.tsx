@@ -11,9 +11,9 @@ const SettingsScreen = () => {
 
     const [seasonIsOpen, setSeasonIsOpen] = useState<boolean>(false);
     const [grassTypeIsOpen, setGrassTypeIsOpen] = useState<boolean>(false);
-    const [season, setSeason] = useState<ISeason | null>(null);
-    const [selectedSeason, setSelectedSeason] = useState<ISeason | null>(null);
-    const [selectedGrassType, setSelectedGrassType] = useState<IGrassType | undefined>(undefined);
+    const [season, setSeason] = useState<ISeason | undefined>(undefined);
+    const [selectedSeason, setSelectedSeason] = useState<number | null>(null);
+    const [selectedGrassType, setSelectedGrassType] = useState<number | null>(null);
     const [grassType, setGrassType] = useState<IGrassType | undefined>(undefined);
 
     const grassTypeDetails = (): IGrassType | undefined => grassTypes?.find(g => g.id == grassType!.id);
@@ -22,10 +22,12 @@ const SettingsScreen = () => {
 
          const fetchData = async () => {
             const myMowing = await new myMowingService().get();
-            setSelectedSeason(myMowing.seasonId);
-            setSelectedGrassType(myMowing.grassTypeId);
-            setSeason(seasons.find(s => s.value == myMowing.seasonId));
-            setGrassType(grassTypes?.find(g => g.id == myMowing.grassTypeId));
+            if (myMowing != null) {
+                setSelectedSeason(myMowing.seasonId);
+                setSelectedGrassType(myMowing.grassTypeId);
+                setSeason(seasons.find(s => s.value == myMowing.seasonId));
+                setGrassType(grassTypes?.find(g => g.id == myMowing.grassTypeId));
+            }
          }
 
          fetchData();
@@ -52,6 +54,8 @@ const SettingsScreen = () => {
                 current_length: 0,
                 mow_length: mow_length
             });
+
+            alert("Saved successfully!")
         }
     }
 

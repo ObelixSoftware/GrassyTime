@@ -39,6 +39,7 @@ Password: 5/.Ewt~U=(Ty4S2<
 
 # Notes
 
+* Quickly using alert() for error messages or successful messages
 * Using react-dom 17.0.1 that is compatible with react 17.0.1 and react-native-web 0.17.7
 * Use terminate.sh if you ever want to terminate port 8081
 

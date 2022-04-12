@@ -3,10 +3,11 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 50
+        marginTop: 50,
+        alignItems: 'center'
     },
     line: {
         fontSize: 14,
-        margin: 10
+        marginTop: 10,
     },
 })
