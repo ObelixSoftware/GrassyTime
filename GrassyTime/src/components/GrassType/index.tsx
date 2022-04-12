@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { IGrassType } from '../../constants/grass';
+import { IGrassType } from '../../model/grass';
 import styles from './styles';
 
 interface IGrassTypeView {

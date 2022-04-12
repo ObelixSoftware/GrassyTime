@@ -1,19 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { seasons, grassTypes, ISeason, IGrassType, IGrassTypeSelectedItem } from '../../constants/grass';
+import { seasons, grassTypes, ISeason, IGrassType } from '../../model/grass';
 import GrassTypeView from '../../components/GrassType';
 import styles from './styles';
+import { Button } from '@rneui/themed';
+import myMowingService from '../../services/myMowingService'
 
 const SettingsScreen = () => {
 
     const [seasonIsOpen, setSeasonIsOpen] = useState<boolean>(false);
     const [grassTypeIsOpen, setGrassTypeIsOpen] = useState<boolean>(false);
     const [season, setSeason] = useState<ISeason | null>(null);
+    const [selectedSeason, setSelectedSeason] = useState<ISeason | null>(null);
     const [selectedGrassType, setSelectedGrassType] = useState<IGrassType | undefined>(undefined);
-    const [grassType, setGrassType] = useState<IGrassTypeSelectedItem | undefined>(undefined);
+    const [grassType, setGrassType] = useState<IGrassType | undefined>(undefined);
 
     const grassTypeDetails = (): IGrassType | undefined => grassTypes?.find(g => g.id == grassType!.id);
+
+      useEffect(() => {
+
+         const fetchData = async () => {
+            const myMowing = await new myMowingService().get();
+            setSelectedSeason(myMowing.seasonId);
+            setSelectedGrassType(myMowing.grassTypeId);
+            setSeason(seasons.find(s => s.value == myMowing.seasonId));
+            setGrassType(grassTypes?.find(g => g.id == myMowing.grassTypeId));
+         }
+
+         fetchData();
+
+        }, []);
+
+    const save = async() => {
+        if (season == null) {
+            alert('Season required');
+        }
+        else if (!grassType) {
+            alert('Grass Type required');
+        }
+        else {
+            const rate = season.value == 0 ? grassType!.summer : grassType!.winter;
+            const mow_length = grassType!.mow_length;
+
+            await new myMowingService().update({
+                id: grassType!.id,
+                last_updated: new Date(),
+                seasonId: selectedSeason!,
+                grassTypeId: selectedGrassType!,
+                rate: rate,
+                current_length: 0,
+                mow_length: mow_length
+            });
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -24,11 +64,14 @@ const SettingsScreen = () => {
                 placeholder="Select A Season"
                 open={seasonIsOpen}
                 items={seasons}
-                value={season}
+                value={selectedSeason}
                 setOpen={setSeasonIsOpen}
-                setValue={setSeason}
+                setValue={setSelectedSeason}
                 zIndex={3000}
                 zIndexInverse={1000}
+                onSelectItem={(item) => {
+                    setSeason(item);
+                }}
                 schema={{
                     label: 'title',
                     value: 'value'
@@ -62,6 +105,11 @@ const SettingsScreen = () => {
                 <GrassTypeView details={grassTypeDetails()} />
             }
 
+            <Button
+                title={"Save"}
+                titleStyle={styles.buttonTitle}
+                style={styles.button}
+                onPress={() => save()}></Button>
         </View>
     )
 

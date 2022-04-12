@@ -1,6 +1,6 @@
 export interface ISeason {
     title: string;
-    value: string;
+    value: number;
 }
 
 export interface IGrassType {
@@ -11,14 +11,9 @@ export interface IGrassType {
     mow_length: number;
 }
 
-export interface IGrassTypeSelectedItem {
-    type: string;
-    id: number;
-}
-
 export const seasons: Array<ISeason> = [
-    { title: "Summer", value: 'Summer' },
-    { title: 'Winter', value: 'Winter' }
+    { title: "Summer", value: 0 },
+    { title: 'Winter', value: 1 }
 ];
 
 export const grassTypes: Array<IGrassType> = [
