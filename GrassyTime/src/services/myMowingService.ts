@@ -12,4 +12,16 @@ export default class myMowingService {
                 return JSON.parse(json) as IMyMowing;
             });
     }
+
+    async updateMowing(): Promise<void> {
+        var myMowing = await this.get();
+        if (myMowing !== null) {
+            const last_updated = myMowing.last_updated;
+            /*if((new Date().getTime() - last_updated) > (60 * 60 * 24 * 1000)) {
+                myMowing.last_updated = new Date();
+                myMowing.current_length += myMowing!.rate;
+                this.update(myMowing);
+            }*/
+        }
+    }
 }

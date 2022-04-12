@@ -5,7 +5,7 @@ import { Button, Input } from '@rneui/themed';
 import styles from './styles';
 import auth from '@react-native-firebase/auth';
 import { validateEmail } from '../../utils/validationUtils';
-import { RootProps } from '../../Navigation';
+import { RootProps } from '../../navigation';
 
 const LoginScreen = ({ navigation }: RootProps) => {
 

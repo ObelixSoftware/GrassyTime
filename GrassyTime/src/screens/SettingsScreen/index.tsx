@@ -18,9 +18,9 @@ const SettingsScreen = () => {
 
     const grassTypeDetails = (): IGrassType | undefined => grassTypes?.find(g => g.id == grassType!.id);
 
-      useEffect(() => {
+    useEffect(() => {
 
-         const fetchData = async () => {
+        const fetchData = async () => {
             const myMowing = await new myMowingService().get();
             if (myMowing != null) {
                 setSelectedSeason(myMowing.seasonId);
@@ -28,13 +28,13 @@ const SettingsScreen = () => {
                 setSeason(seasons.find(s => s.value == myMowing.seasonId));
                 setGrassType(grassTypes?.find(g => g.id == myMowing.grassTypeId));
             }
-         }
+        }
 
-         fetchData();
+        fetchData();
 
-        }, []);
+    }, []);
 
-    const save = async() => {
+    const save = async () => {
         if (season == null) {
             alert('Season required');
         }
