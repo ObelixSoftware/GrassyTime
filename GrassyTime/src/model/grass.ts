@@ -1,3 +1,5 @@
+export const INCREASE_GROWTH_DAY = (60 * 60 * 24 * 1000); // 1 day
+
 export interface ISeason {
     title: string;
     value: number;

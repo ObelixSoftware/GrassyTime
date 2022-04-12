@@ -12,4 +12,17 @@ export default StyleSheet.create({
         marginTop: 20,
         marginBottom: 20
     },
+    error: {
+        textAlign: 'center',
+        color: 'red',
+        fontSize: 16,
+        fontWeight: "bold",
+        marginTop: 20,
+        marginBottom: 20
+    },
+    highlight: {
+        color: 'red',
+        fontSize: 16,
+        fontWeight: "bold",
+    }
 })

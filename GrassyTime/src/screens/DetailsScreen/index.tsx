@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
-import auth from '@react-native-firebase/auth';
 import { Button } from '@rneui/themed';
 import { RootProps } from '../../navigation';
 import styles from './styles';
@@ -20,27 +19,34 @@ const DetailsScreen = (props: RootProps) => {
         const fetchData = async () => {
             const service = new myMowingService();
             const mowing = await service.get();
-            alert(JSON.stringify(mowing))
+            service.updateMowing();
             setMyMowing(mowing);
         }
 
-        fetchData();
+        const unsubscribe = navigation.addListener('focus', () => {
+            fetchData();
+        });
 
-    }, []);
+        return unsubscribe;
 
-    const signOut = () => {
-        auth()
-            .signOut()
-            .then(() => {
-                console.log('User signed out!');
-                navigation.navigate("Login");
-            });
+    }, [navigation]);
+
+    const increase = async () => {
+        const service = new myMowingService();
+        await service.increase(myMowing!);
+        const mowing = await service.get();
+        setMyMowing(mowing);
     }
 
     return (
         <ScrollView>
             <View>
                 {myMowing !== null ? <MyMowingView details={myMowing} /> : <Text style={styles.error}>Configure your grass type under Settings</Text>}
+                <Button
+                    title={"Increase"}
+                    titleStyle={styles.buttonTitle}
+                    style={styles.button}
+                    onPress={() => increase()}></Button>
             </View>
         </ScrollView>
     )
