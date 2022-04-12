@@ -37,6 +37,12 @@ Password: 5/.Ewt~U=(Ty4S2<
 * https://reactnative.dev/docs/environment-setup
 * https://reactnavigation.org/docs/typescript/
 
+# TODO
+
+* Add default theme
+* Update the growth daily automatically in the background
+* Show local notification when grass is ready to mow
+
 # Notes
 
 * Quickly using alert() for error messages or successful messages
