@@ -43,7 +43,7 @@ const DetailsScreen = (props: RootProps) => {
             <View>
                 {myMowing !== null ? <MyMowingView details={myMowing} /> : <Text style={styles.error}>Configure your grass type under Settings</Text>}
                 <Button
-                    title={"Increase"}
+                    title={"Increase (Testing)"}
                     titleStyle={styles.buttonTitle}
                     style={styles.button}
                     onPress={() => increase()}></Button>

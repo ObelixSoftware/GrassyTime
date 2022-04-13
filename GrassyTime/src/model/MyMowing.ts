@@ -6,4 +6,5 @@ export interface IMyMowing {
     rate: number;
     current_length: number;
     mow_length: number;
+    last_mow_date: Date;
 }
