@@ -67,7 +67,8 @@ const SettingsScreen = () => {
     }
 
     return (
-        <ScrollView>
+        <ScrollView horizontal
+            contentContainerStyle={{ width: '100%' }}>
             <View style={styles.container}>
                 <DatePicker
                     modal
