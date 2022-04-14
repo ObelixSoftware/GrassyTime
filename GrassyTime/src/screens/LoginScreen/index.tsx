@@ -73,9 +73,8 @@ const LoginScreen = ({ navigation }: RootProps) => {
                 />
                 <Button
                     title={"Login"}
-                    loading={isLoading}
                     titleStyle={styles.buttonTitle}
-                    style={styles.button}
+                    loading={isLoading}
                     onPress={() => onLoginPress()}>
                 </Button>
             </KeyboardAwareScrollView>

@@ -45,7 +45,6 @@ const DetailsScreen = (props: RootProps) => {
                 <Button
                     title={"Increase (Testing)"}
                     titleStyle={styles.buttonTitle}
-                    style={styles.button}
                     onPress={() => increase()}></Button>
             </View>
         </ScrollView>

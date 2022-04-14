@@ -127,7 +127,10 @@ const SettingsScreen = () => {
                 />
 
                 <Text style={styles.title}>Last Mow Date</Text>
-                <Button title={lastMowDate.toLocaleDateString()} onPress={() => setIsDatePickerOpen(true)} />
+                <Button
+                    titleStyle={styles.buttonTitle}
+                    title={lastMowDate.toLocaleDateString()}
+                    onPress={() => setIsDatePickerOpen(true)} />
 
                 {
                     grassType != null &&
@@ -137,7 +140,7 @@ const SettingsScreen = () => {
                 <Button
                     title={"Save"}
                     titleStyle={styles.buttonTitle}
-                    style={styles.button}
+                    containerStyle={styles.saveButton}
                     onPress={() => save()}></Button>
             </View>
         </ScrollView>

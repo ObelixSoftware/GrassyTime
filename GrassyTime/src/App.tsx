@@ -1,13 +1,20 @@
 import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react'
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { RootNavigation } from './navigation';
+import { ThemeProvider, createTheme } from '@rneui/themed';
 
 const Stack = createNativeStackNavigator<RootNavigation>();
+
+const theme = createTheme({
+  lightColors: {
+    primary: 'rgb(52, 140, 49)'
+  }
+});
 
 function App() {
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
@@ -19,6 +26,7 @@ function App() {
   }, []);
 
   return (
+    <ThemeProvider theme={theme}>
     <NavigationContainer>
       <Stack.Navigator>
         {user ? (
@@ -36,6 +44,7 @@ function App() {
         )}
       </Stack.Navigator>
     </NavigationContainer>
+    </ThemeProvider>
   );
 }
 

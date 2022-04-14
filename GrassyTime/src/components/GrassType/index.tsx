@@ -7,8 +7,8 @@ interface IGrassTypeView {
     details: IGrassType | undefined;
 }
 
-const GrassTypeView = (props: IGrassTypeView) => {
-    const { type, summer, winter, mow_length } = props?.details || {};
+const GrassTypeView : React.FC<IGrassTypeView> = ({details}) => {
+    const { type, summer, winter, mow_length } = details || {};
 
     return (
         <View style={styles.container}>

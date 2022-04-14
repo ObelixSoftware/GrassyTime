@@ -8,8 +8,8 @@ interface IMyMowingViewProp {
     details: IMyMowing | null;
 }
 
-const MyMowingView = (props: IMyMowingViewProp) => {
-    const { last_updated, seasonId, grassTypeId, rate, current_length, mow_length, last_mow_date } = props?.details || {};
+const MyMowingView : React.FC<IMyMowingViewProp> = ({details}) => {
+    const { last_updated, seasonId, grassTypeId, rate, current_length, mow_length, last_mow_date } = details || {};
     const display_last_updated = last_updated ? new Date(last_updated).toLocaleDateString() + " " + new Date(last_updated).toLocaleTimeString() : "";
     const display_last_mowing_date = last_mow_date ? new Date(last_mow_date).toLocaleDateString() : "";
     const season = seasons.find(s => s.value == seasonId);
